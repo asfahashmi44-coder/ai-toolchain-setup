@@ -29,9 +29,13 @@ export const Tabs: React.FC<TabsProps> = ({ items }) => {
     }
 
     e.preventDefault();
-    setActiveTab(items[nextIndex].id);
-    tabRefs.current[nextIndex]?.focus();
-  };
+    // Change this line:
+ref={(el) => (tabRefs.current[idx] = el)}
+
+// To this (explicitly return void):
+ref={(el) => {
+  tabRefs.current[idx] = el;
+}}
 
   return (
     <div>
